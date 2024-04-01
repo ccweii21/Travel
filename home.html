@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("mySearch");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myMenu");
+            li = ul.getElementsByTagName("li");
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+        $(document).ready(function () {
+            $('#btnHome').click(function () {
+                $(this).closest('div')('display', 'none');
+            });
+            $('#c1').click(function () {
+                $('.foodhtml').fadeIn(400);
+            });
+            $('#c3').click(function () {
+                $('.shoppinghtml').fadeIn(400);
+            });
+            $('#c4').click(function () {
+                $('.spothtml').fadeIn(400);
+            });
+            $('#c6').click(function () {
+                $('.nighthtml').fadeIn(400);
+            });
+            $('#c7').click(function () {
+                $('.couplehtml').fadeIn(400);
+            });
+            $('#c2').click(function () {
+                $('.playhtml').fadeIn(400);
+            });
+            $('#c5').click(function () {
+                $('.historyhtml').fadeIn(400);
+            });
+            $('#c8').click(function () {
+                $('.islandhtml').fadeIn(400);
+            });
+            $('#favority').click(function () {
+                $('#favoritydiv').fadeIn(400);
+            });
+            $('#close').click(function () {
+                $('#favoritydiv').fadeOut(400);
+            });
+            var favority_list = [];
+            $('.like').click(function () {
+                $(this).attr('src', "img/liked.png");
+                var $liked = $(this).closest('#item').find('h2').text();
+                console.log($liked);
+                var $par = $(this).closest('#item');
+                var $name = $par.find('h2');
+                var $img = $par.find('#itemPic');
+                var item_obj = {
+                    text: $name.text(),
+                    src: $img.attr('src')
+                };
+                favority_list.push(item_obj);
+                console.log(favority_list);
+                var $item = $('<div id="item" class="item" style="width:300px; height:290px; position:relative margin-top:15px;">\
+          <img id="itemPic" class="itemPic" src="./img/night01.png" style=" width: 270px;height: 200px; ">\
+          <img id="sticker" src="./img/night_location.png" style="position:absolute; top:240px; left:15px;">\
+          <h2 class="nighttext" style="position:absolute; top:265px; left:8px; width:200px;">屋頂上</h2>\
+          <img class="del" src="img/trash.png" alt="" style="position:absolute; top:247px; left:263px;width:35px; height:35px; ">\
+        </div>')
+                $('#favoritydiv').append($item);
+                $item.find('h2').text(item_obj.text);
+                $item.find('#itemPic').attr('src', item_obj.src);
+                var $total = $('.total').text();
+                parseInt($total);
+                $('.total').text(parseInt($total) + 1);
+                $('.del').click(function () {
+                    var $liketotal = $('.total').text();
+                    $('.total').text(parseInt($liketotal)-1);
+                    $(this).parent('#item').remove();
+                    $('.like').attr('src', 'img/like.png');
+                    
+                })
+                $('.del').mouseover(function () {
+                    $(this).attr('src', "img/disposal.png");
+                })
+                $('.del').mouseleave(function () {
+                    $(this).attr('src', "img/trash.png");
+                })
+
+            });
+        })
+
+    </script>
+    <title>Travel.com</title>
+    <style>
+        .column {
+            float: left;
+            width: 344px;
+            height: 390px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        } */
+
+        div#c1 {
+            background-color: #96c9dc;
+            margin-right: 10px;
+        }
+
+        div#c2 {
+            background-color: #f06c9b;
+            margin-right: 10px;
+        }
+
+        div#c3 {
+            background-color: #f9b9b7;
+            margin-right: 10px;
+        }
+
+        div#c4 {
+            background-color: #f5d491;
+            margin-right: 10px;
+        }
+
+        div#c5 {
+            background-color: #96b2dc;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        div#c6 {
+            background-color: #b66cc0;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        div#c7 {
+            background-color: #dcb8d4;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        div#c8 {
+            background-color: #c9b6bd;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .words {
+            position: center;
+            margin-top: 280px;
+            margin-left: 60px;
+            font-size: 40px;
+            color: white;
+            background-color: rgb(222, 231, 231, 0.5);
+            background-size: 10px;
+        }
+
+        #addW {
+            font-size: 10px;
+        }
+
+        .row img {
+            margin-top: 100px;
+            margin-left: 100px;
+            position: absolute;
+            opacity: 1;
+        }
+
+        .column:hover {
+            opacity: 0.7;
+        }
+
+        /* Style the search box */
+        #mySearch {
+            width: 84%;
+            font-size: 18px;
+            padding: 11px;
+            border: 1px solid #ddd;
+            margin-left: 112px;
+        }
+
+        /* Style the navigation menu */
+        #myMenu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            /*允許換行*/
+            margin-left: 110px;
+
+        }
+
+        #myMenu li a {
+            padding: 12px;
+            text-decoration: none;
+            color: black;
+            display: block
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .nighthtml {
+            background-color: #e0cfe2;
+            padding: 20px;
+            font-family: Arial;
+            /* margin-left: 140px; */
+            position: relative;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: overlay;
+        }
+
+        .historyhtml {
+            background-color: #384E77;
+            padding: 20px;
+            font-family: Arial;
+            /* margin-left: 140px; */
+            position: relative;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: overlay;
+        }
+
+        .playhtml {
+            background-color: #FAB2C3;
+            padding: 20px;
+            font-family: Arial;
+            /* margin-left: 140px; */
+            position: relative;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: overlay;
+        }
+
+        .islandhtml {
+            background-color: #2E023B;
+            padding: 20px;
+            font-family: Arial;
+            /* margin-left: 140px; */
+            position: relative;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: overlay;
+        }
+
+        .couplehtml {
+            background-color: #D782BA;
+            padding: 20px;
+            font-family: Arial;
+            /* margin-left: 140px; */
+            position: relative;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: overlay;
+        }
+
+        .spothtml {
+            background-color: #FFEAD0;
+            padding: 20px;
+            font-family: Arial;
+            /* margin-left: 140px; */
+            position: relative;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: overlay;
+        }
+
+        .foodhtml {
+            background-color: #247ba0;
+            padding: 20px;
+            font-family: Arial;
+            /* margin-left: 140px; */
+            position: relative;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: overlay;
+        }
+
+        .shoppinghtml {
+            background-color: #fadad9;
+            padding: 20px;
+            font-family: Arial;
+            /* margin-left: 140px; */
+            position: relative;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: overlay;
+        }
+
+
+        .nightrow {
+            margin: 8px -16px;
+        }
+
+        .nightrow,
+        .nightrow>.item {
+            padding: 8px;
+        }
+
+        .playrow {
+            margin: 8px -16px;
+        }
+
+        .playrow,
+        .playrow>.item {
+            padding: 8px;
+        }
+
+        .islandrow {
+            margin: 8px -16px;
+        }
+
+        .islandrow,
+        .islandrow>.item {
+            padding: 8px;
+        }
+
+        .hisrow {
+            margin: 8px -16px;
+        }
+
+        .hisrow,
+        .hisrow>.item {
+            padding: 8px;
+        }
+
+        .couplerow {
+            margin: 8px -16px;
+        }
+
+        .couplerow,
+        .couplerow>.item {
+            padding: 8px;
+        }
+
+        .spotrow {
+            margin: 8px -16px;
+        }
+
+        .spotrow,
+        .spotrow>.item {
+            padding: 8px;
+        }
+
+        .foodrow {
+            margin: 8px -16px;
+        }
+
+        .foodrow,
+        .foodrow>.item {
+            padding: 8px;
+        }
+
+
+        .shoppingrow {
+            margin: 8px -16px;
+        }
+
+        .shoppingrow,
+        .shoppingrow>.item {
+            padding: 8px;
+        }
+
+        /*--------------------------------------------*/
+
+        #item {
+            border: none;
+            margin-left: 12px;
+            background-color: #f1f1f1;
+            width: 300px;
+            height: 350px;
+            break-inside: avoid;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        #item:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .nightsidebar {
+            height: 1500px;
+            /* Full-height: remove this if you want "auto" height */
+            width: 120px;
+            /* Set the width of the sidebar */
+            position: absolute;
+            /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1;
+            /* Stay on top */
+            top: 0;
+            /* Stay at the top */
+            left: 0;
+            background-color: #b66cc0;
+            ;
+            /* Black */
+            overflow-x: hidden;
+            /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        .hissidebar {
+            height: 1500px;
+            /* Full-height: remove this if you want "auto" height */
+            width: 120px;
+            /* Set the width of the sidebar */
+            position: absolute;
+            /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1;
+            /* Stay on top */
+            top: 0;
+            /* Stay at the top */
+            left: 0;
+            background-color: #96b2dc;
+            ;
+            /* Black */
+            overflow-x: hidden;
+            /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        .playsidebar {
+            height:1500px;
+            /* Full-height: remove this if you want "auto" height */
+            width: 120px;
+            /* Set the width of the sidebar */
+            position: absolute;
+            /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1;
+            /* Stay on top */
+            top: 0;
+            /* Stay at the top */
+            left: 0;
+            background-color: #f06c9b;
+            ;
+            /* Black */
+            overflow-x: hidden;
+            /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        .islandsidebar {
+            height: 1500px;
+            /* Full-height: remove this if you want "auto" height */
+            width: 120px;
+            /* Set the width of the sidebar */
+            position: absolute;
+            /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1;
+            /* Stay on top */
+            top: 0;
+            /* Stay at the top */
+            left: 0;
+            background-color: #c9b6bd;
+            ;
+            /* Black */
+            overflow-x: hidden;
+            /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        .couplesidebar {
+            height: 1500px;
+            /* Full-height: remove this if you want "auto" height */
+            width: 120px;
+            /* Set the width of the sidebar */
+            position: absolute;
+            /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1;
+            /* Stay on top */
+            top: 0;
+            /* Stay at the top */
+            left: 0;
+            background-color: #dcb8d4;
+            ;
+            /* Black */
+            overflow-x: hidden;
+            /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        .spotsidebar {
+            height:1500px;
+            /* Full-height: remove this if you want "auto" height */
+            width: 120px;
+            /* Set the width of the sidebar */
+            position: absolute;
+            /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1;
+            /* Stay on top */
+            top: 0;
+            /* Stay at the top */
+            left: 0;
+            background-color: #f5d491;
+            ;
+            /* Black */
+            overflow-x: hidden;
+            /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        .foodsidebar {
+            height: 1500px;
+            /* Full-height: remove this if you want "auto" height */
+            width: 120px;
+            /* Set the width of the sidebar */
+            position: absolute;
+            /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1;
+            /* Stay on top */
+            top: 0;
+            /* Stay at the top */
+            left: 0;
+            background-color: #96C9DC;
+            ;
+            /* Black */
+            overflow-x: hidden;
+            /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        .shoppingsidebar {
+            height: 1500px;
+            /* Full-height: remove this if you want "auto" height */
+            width: 120px;
+            /* Set the width of the sidebar */
+            position: absolute;
+            /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1;
+            /* Stay on top */
+            top: 0;
+            /* Stay at the top */
+            left: 0;
+            background-color: #f9b9b7;
+            ;
+            /* Black */
+            overflow-x: hidden;
+            /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        #itemPic {
+            padding-left: 25px;
+            width: 270px;
+            height: 200px;
+            margin-top: 23px;
+            opacity: 90%;
+        }
+
+        #sticker {
+            width: 20px;
+            height: 20px;
+            margin-top: 0px;
+            margin-left: 10px;
+        }
+
+        h2 {
+            margin-left: 45px;
+            margin-top: -30px;
+            margin-right: 10px;
+            font-size: 22px;
+        }
+
+        #item h4 {
+            margin-left: 45px;
+            margin-top: -10px;
+            margin-bottom: 7px;
+            margin-right: 10px;
+            font-size: 18px;
+            color: rgba(50, 52, 52, 0.59)
+        }
+
+        h4#fd {
+            margin-left: 25px;
+            margin-top: -50px;
+            margin-bottom: 7px;
+            margin-right: 10px;
+            font-size: 15px;
+            color: rgba(50, 52, 52, 0.59)
+        }
+
+        ul {
+            display: flex;
+        }
+
+        #btnHome {
+            width: 50px;
+            margin-left: 28px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        #favority {
+            width: 50px;
+            margin-left: 28px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        #favoritydiv {
+            position: fixed;
+            left: 123px;
+            top: 100px;
+            border: 2px solid white;
+            padding: 10px;
+            background-color: #96C9DC;
+            display: none;
+            border-radius: 8px;
+            box-shadow: 10px 10px 20px rgb(0, 0, 0, 0.5);
+            width: 360px;
+            padding-top: 30px;
+            max-height: 500px;
+            overflow-y: overlay;
+        }
+
+        #close {
+            position: absolute;
+            top: 0px;
+            left: 315px;
+            /* width: 360px; */
+            padding: 2px;
+            color: white;
+            border: 1px solid white;
+            margin: 4px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #total {
+            background-color: #b66cc0;
+            border-radius: 100%;
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            font-size: 25px;
+            margin: 4px;
+        }
+
+        #like {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: absolute;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: #96C9DC;
+        }
+
+        .total {
+            background-color: red;
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            position: absolute;
+            right: 40px;
+            top: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+
+        <div id="c1" class="column">
+            <img src="./img/c1.png" alt="">
+            <div class="words">餐廳</div>
+        </div>
+
+
+        <div id="c2" class="column">
+            <img src="./img/c2.png" alt="">
+            <div class="words">娛樂</div>
+        </div>
+
+        <div id="c3" class="column">
+            <img src="./img/c3.png" alt="">
+            <div class="words">購物</div>
+        </div>
+
+        <div id="c4" class="column">
+            <img src="./img/c4.png" alt="">
+            <div class="words">景點</div>
+        </div>
+
+        <div id="c5" class="column">
+            <img src="./img/c5.png" alt="">
+            <div class="words">歷史</div>
+        </div>
+        <div id="c6" class="column">
+            <img src="./img/c6.png" alt="">
+            <div class="words">夜生活</div>
+        </div>
+        <div id="c7" class="column">
+            <img src="./img/c7.png" alt="">
+            <div class="words">情侶</div>
+        </div>
+        <div id="c8" class="column">
+            <img src="./img/c8.png" alt="">
+            <div class="words">離島</div>
+        </div>
+    </div>
+    <div class="foodhtml">
+        <div class="foodsidebar">
+            <a href="home.html"><img id="btnHome" src="./img/btnHome.png"></a>
+            <img id="favority" src="img/heart.png" alt="">
+            <div class="total">0</div>
+        </div>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+        <div class="foodrow">
+
+            <ul id="myMenu">
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd01.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>金蓬萊遵古台菜</h2>
+                            <h4 id="fd"><a href="http://www.goldenformosa.com.tw/bin/home.php">台北市士林區天母東路101號</a></h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd02.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>Impromptu by Paul Lee</h2>
+                            <h4 id="fd"><a href="http://www.impromptu.com.tw">台北市中山區中山北路二段3號 B1</a></h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd03.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>謙安和</h2>
+                            <h4 id="fd"><a href="https://www.facebook.com/qiananhe/">台北市安和路一段127巷4號</a></h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd04.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>Longtail Restaurant & Bar</h2>
+                            <h4 id="fd"><a href="https://longtail.com.tw">台北市大安區敦化南路二段174號</a></h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd05.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>Molino de Urdániz 渥達尼斯磨坊</h2>
+                            <h4 id="fd"><a
+                                    href="https://www.tatlerasia.com/dining/molino-de-urdániz-渥達尼斯磨坊">台北市中山區建國北路一段61號GF</a>
+                            </h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd06.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>天香樓</h2>
+                            <h4 id="fd"><a
+                                    href="https://taipei.landishotelsresorts.com/chinese-trad/dining-detail.php?id=1">台北市中山區民權東路二段41號</a>
+                            </h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd07.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>文華東方雅閣</h2>
+                            <h4 id="fd"><a
+                                    href="https://www.mandarinoriental.com/zh-hk/taipei/songshan/dine/ya-ge">台北市松山區敦化北路158號3樓</a>
+                            </h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd08.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>De Nuit</h2>
+                            <h4 id="fd"><a href="https://www.denuit.com.tw/?lang=zh">台北市大安區信義路四段175號</a></h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd09.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>牡丹</h2>
+                            <h4 id="fd"><a href="https://mudantempura.com">台北市大安區四維路52巷17號</a></h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd10.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>巴黎廳1930X高山英紀</h2>
+                            <h4 id="fd"><a
+                                    href="https://taipei.landishotelsresorts.com/chinese-trad/dining-detail.php?id=2">台北市中山區民權東路二段41號2F</a>
+                            </h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd11.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>鹽之華</h2>
+                            <h4 id="fd"><a href="https://fleur-de-sel.com.tw">台中市西屯區市政路581-1號</a></h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/fd12.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>Forchetta</h2>
+                            <h4 id="fd"><a href="https://www.forchetta.com.tw">台中市西屯區惠中七街36號2樓</a></h4>
+                        </a>
+                    </div>
+                </li>
+
+        </div>
+        </ul>
+    </div>
+    <div class="playhtml">
+        <div class="playsidebar">
+            <a href="home.html"> <img id="btnHome" src="./img/btnHome.png"></a>
+            <img id="favority" src="img/heart.png" alt="">
+        </div>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+        <div class="playrow">
+
+            <ul id="myMenu">
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play01.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>兒童新樂園</h2>
+                            <h4>台北 親子 </h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play02.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>六福村主題樂園</h2>
+                            <h4>新竹 動物園 水樂園</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play03.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>麗寶樂園</h2>
+                            <h4>台中 探索世界 馬拉灣 賽車場</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play04.jpeg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>Xpark</h2>
+                            <h4>桃園 水母牆 企鵝咖啡廳 水族館</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play05.jpeg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>極限密室</h2>
+                            <h4>台北 逃脫遊戲 好友 預約制 休閒</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play06.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>i-ride</h2>
+                            <h4>台北 飛行遨遊 體感模擬 5D劇院 </h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play07.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>MegaSTONE</h2>
+                            <h4>台北 抱石場地 上攀牆 運動</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play08.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>奧斯丁夢想樂園</h2>
+                            <h4>台北 台南 高雄 親子 球池 派對 10大主題</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play09.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>六度空間</h2>
+                            <h4>台北 鐳射對戰 迷你高爾夫 晚會派對</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play10.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>日光輕航機</h2>
+                            <h4>花蓮 日出 看海 飛行遨遊</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play11.jpeg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>ActionBunker 防空動</h2>
+                            <h4>台北 生存 包場 泡棉子彈 射擊訓練</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/play12.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>ViveLand</h2>
+                            <h4>台北 VR實境 HTC 科技整合</h4>
+                        </a>
+                    </div>
+                </li>
+
+        </div>
+
+        </ul>
+    </div>
+    <div class="shoppinghtml">
+        <div class="shoppingsidebar">
+            <a href="home.html"><img id="btnHome" src="./img/btnHome.png"></a>
+            <img id="favority" src="img/heart.png" alt="">
+        </div>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+        <div class="shoppingrow">
+
+            <ul id="myMenu">
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp01.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>基隆東岸廣場</h2>
+                            <h4>基隆 停車場 複合式商場</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp02.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>美麗華百樂園</h2>
+                            <h4>大直 摩天輪 娛樂 約會</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp03.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>BELLAVITA 寶麗廣場</h2>
+                            <h4>信義 貴婦百貨 時尚</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp04.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>MITSUI OUTLET PARK</h2>
+                            <h4>林口 休憇 品牌 戶外活動空間</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp05.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>華泰名品城</h2>
+                            <h4>桃園 高鐵 國際級 折扣 品牌</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp06.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>勤美誠品綠園道</h2>
+                            <h4>台中 生活 文青 草悟道</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp07.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>義大世界購物廣場</h2>
+                            <h4>高雄 品牌直營 娛樂 摩天輪 約會</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp08.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>蘭城新月廣場</h2>
+                            <h4>宜蘭 複合式商場 五星級飯店</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp09.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>南紡購物中心</h2>
+                            <h4>台南</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp10.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>SKM Park</h2>
+                            <h4>高雄 草悟道 歐美 生活 複合式商場</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp11.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>京站時尚廣場</h2>
+                            <h4>台北 轉運站</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/sp12.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>ATT 4 FUN</h2>
+                            <h4>信義 Club SkyLoungeBar</h4>
+                        </a>
+                    </div>
+                </li>
+
+        </div>
+
+        </ul>
+    </div>
+    <div class="spothtml">
+        <div class="spotsidebar">
+            <a href="home.html"><img id="btnHome" src="./img/btnHome.png"></a>
+            <img id="favority" src="img/heart.png" alt="">
+        </div>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+        <div class="spotrow">
+
+            <ul id="myMenu">
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot01.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>經國七海文化園區</h2>
+                            <h4>中山 純白寓所與現代庭園 純白系</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot02.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>不只是圖書館</h2>
+                            <h4>信義 松菸古蹟裡的書冊澡堂 </h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot03.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>自來水博物館</h2>
+                            <h4>中正 預約制的地下水宮殿</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot04.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>榕錦時光生活園區</h2>
+                            <h4>台北大安 日本古建築古街道</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot05.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>龍貓車站</h2>
+                            <h4>苗栗通霄 龍貓車站等公車</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot06.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>桑原商店</h2>
+                            <h4>台南東區 日式風格解憂雜貨店</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot07.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>太麻里平交道</h2>
+                            <h4>台東 穿越平交道</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot08.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>榕錦時光生活園區</h2>
+                            <h4>台北 360度透明玻璃屋</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot09.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>101大樓</h2>
+                            <h4>台北 後製背景般的既視感</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img id="itemPic" src="./img/spot10.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>Skyline460</h2>
+                            <h4>台北 全亞洲最高的天空步道</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot11.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>大稻埕</h2>
+                            <h4>台北 穿越20年代復古老街</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/spot12.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>金面山剪刀石</h2>
+                            <h4>台北 360度的台北市風景</h4>
+                        </a>
+                    </div>
+                </li>
+
+
+        </div>
+
+        </ul>
+    </div>
+    <div class="historyhtml">
+        <div class="hissidebar">
+            <a href="home.html"> <img id="btnHome" src="./img/btnHome.png"></a>
+            <img id="favority" src="img/heart.png" alt="">
+        </div>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+        <div class="hisrow">
+
+            <ul id="myMenu">
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history01.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>紅毛城</h2>
+                            <h4>新北</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history02.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>小南門-重熙門</h2>
+                            <h4>台北</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history03.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>金廣福公館</h2>
+                            <h4>新竹</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history04.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>億載金城</h2>
+                            <h4>台南</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history05.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>故宮博物院</h2>
+                            <h4>台北</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history06.webp">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>赤嵌樓</h2>
+                            <h4>台南</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history07.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>台灣歷史博物館</h2>
+                            <h4>台南</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history08.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>武德殿</h2>
+                            <h4>台南</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history09.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>西門紅樓</h2>
+                            <h4>台北</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history10.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>玻璃媽祖廟</h2>
+                            <h4>彰化</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history11.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>九份</h2>
+                            <h4>新北</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/history12jpg.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>台中州廳</h2>
+                            <h4>台中</h4>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="nighthtml" id="nighthtml">
+        <div class="nightsidebar">
+            <a href="home.html"> <img id="btnHome" src="./img/btnHome.png"></a>
+            <img id="favority" src="img/heart.png" alt="">
+        </div>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+        <div class="nightrow">
+
+            <ul id="myMenu">
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night01.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">屋頂上</h2>
+                            <h4>浪漫 約會 夜景 餐廳 網美</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night02.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">Wishy Lounge Bar 慾室 </h2>
+                            <h4>水煙 餐廳 酒吧 餐酒館</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night03.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">覓室 Miss</h2>
+                            <h4>調酒實驗室 私人派對 酒吧 餐酒館</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night04.webp">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">23 Comedy Club</h2>
+                            <h4>伯恩脫口秀 喜劇酒吧 表演 精釀啤酒 雞尾酒</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night05.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">池畔酒吧</h2>
+                            <h4>Ｗhotel 約會 酒吧 度假</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night06.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">Barcode Bar</h2>
+                            <h4>DJ 靚仔靚女 信義區 調酒</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night_07.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">四季長廊夜景</h2>
+                            <h4>北投 賞櫻 夜景 浪漫 約會</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night08.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">WAVE CLUB Taipei</h2>
+                            <h4>DJ 網紅 暢飲 開趴</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night09.png">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">草山夜未眠</h2>
+                            <h4>夜景 約會 浪漫 餐廳 陽明山</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night10.jpeg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">南機場夜市</h2>
+                            <h4>美食 必比登 娛樂</h4>
+                        </a>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night11.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">金錢豹酒店</h2>
+                            <h4>氣派豪華 娛樂 小姐 酒</h4>
+                        </a>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div id="item" class="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" class="itemPic" src="./img/night12.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2 class="nighttext">Belle’s in Taipei</h2>
+                            <h4>華麗復古 調酒 性別友善 變裝皇后 私人俱樂部</h4>
+                        </a>
+                    </div>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+        </ul>
+    </div>
+    <div class="couplehtml">
+        <div class="couplesidebar">
+            <a href="home.html"> <img id="btnHome" src="./img/btnHome.png"></a>
+            <img id="favority" src="img/heart.png" alt="">
+        </div>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+        <div class="couplerow">
+
+            <ul id="myMenu">
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp01.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>萬里情月老廟</h2>
+                            <h4>山群海景 鵲橋 浪漫</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp02.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>珊瑚貝殼廟</h2>
+                            <h4>海底皇宮 珊瑚 貝殼</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item"><img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp03.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>愛情海咖啡館</h2>
+                            <h4>峇里島渡假 </h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp04.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>海鼠山1314觀景台</h2>
+                            <h4>山巒景緻 阿里山 茶園風光</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp05.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>山度空間</h2>
+                            <h4>觀海視野 望海盪鞦韆 天空之境</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp06.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>山海星悅美地</h2>
+                            <h4>賞夜小酌 地景藝術 觀景視野</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp07.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>妮娜巧克力城堡</h2>
+                            <h4>歐式宮廷服 夢幻城堡</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp08.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>赫蒂法莊園</h2>
+                            <h4>綠農 醫養 花鐘 水上城堡</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp09.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>Wonder.land仙境</h2>
+                            <h4>異國風情 美寧靜谷 聲與光 夜景</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp10.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>琉璃仙境</h2>
+                            <h4>童話莊園 教堂 梅花鹿 麝香豬</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp11.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>彩虹橋</h2>
+                            <h4>饒河街夜市 散步</h4>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/cp12.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>幸福水漾公園</h2>
+                            <h4>花海 愛心指標 散步</h4>
+                        </a>
+                    </div>
+                </li>
+
+        </div>
+
+        </ul>
+    </div>
+
+    <div id="islandhtml" class="islandhtml">
+        <div class="islandsidebar">
+            <a href="home.html"> <img id="btnHome" src="./img/btnHome.png"></a>
+            <img id="favority" src="img/heart.png" alt="">
+        </div>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+        <div class="islandrow">
+
+            <ul id="myMenu">
+
+
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island1.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>澎湖南方四島國家公園</h2>
+                            <h4>澎湖 國家公園</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island2.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>雙心石滬</h2>
+                            <h4>澎湖 浪漫 打卡熱點</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island3.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>翟山坑道</h2>
+                            <h4>金門 戰地文化</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island4.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>八二三戰史館</h2>
+                            <h4>金門 戰地文化</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island5.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>八八坑道</h2>
+                            <h4>馬祖 坑道探秘</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island6.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>馬祖酒廠</h2>
+                            <h4>馬祖 打卡熱點</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island7.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>小琉球</h2>
+                            <h4>夏天戲水 打卡熱點</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island8.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>綠島燈塔</h2>
+                            <h4>網美 燈塔 綠島</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island9.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>朝日海底溫泉</h2>
+                            <h4>綠島 泡溫泉 迎曙光</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island10.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>蘭嶼</h2>
+                            <h4>部落旅行 生態體驗</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island11.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>古寧頭戰史館</h2>
+                            <h4>戰地文化 藝文展館</h4>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div id="item">
+                        <img class="like" id="like" src="img/like.png" alt="">
+                        <img id="itemPic" src="./img/island12.jpg">
+                        <a href="#"><img id="sticker" src="./img/night_location.png">
+                            <h2>芹壁村</h2>
+                            <h4>網美 打卡熱點 賞夜景</h4>
+                        </a>
+                    </div>
+                </li>
+        </div>
+
+        </ul>
+    </div>
+    <div id="favoritydiv">
+        <div id="close">X</div>
+    </div>
+</body>
+
+</html>
